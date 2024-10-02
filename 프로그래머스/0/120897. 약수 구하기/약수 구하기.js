@@ -6,5 +6,5 @@ function solution(n) {
             answer.push(i)
         }
     }
-    return answer.sort((a, b) => a-b);
+    return answer;
 }
