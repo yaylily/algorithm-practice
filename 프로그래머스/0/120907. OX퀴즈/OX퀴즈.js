@@ -2,20 +2,17 @@ function solution(quiz) {
     var answer = [];
     
     for(let i=0; i<quiz.length; i++){
-        const quizArr = quiz[i].split(" ")
-        const num1 = quizArr[0]
-        const operator = quizArr[1]
-        const num2 = quizArr[2] 
-        const result = quizArr[4];
+        const [X, operator, Y, , Z] = quiz[i].split(" ")
         
-        let calcResult = 0
+        
+        let sum = 0
         if(operator === '+'){
-            calcResult = +num1 + +num2            
+            sum = +X + +Y          
         } else {
-            calcResult = +num1 - +num2   
+            sum = +X - +Y
         }
 
-        if(calcResult === +result){
+        if(sum === +Z){
             answer.push("O")
         } else {
             answer.push("X")
