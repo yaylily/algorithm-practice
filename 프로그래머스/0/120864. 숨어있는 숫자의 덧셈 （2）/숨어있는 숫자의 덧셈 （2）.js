@@ -1,4 +1,20 @@
 function solution(my_string) {
     
-    return my_string.split("").map(a => isNaN(a) ? "A": a).join("").split("A").reduce((acc, b) => acc + Number(b), 0)
+    let sum = 0
+    let currentNum = ''
+    
+    for(let str of my_string){
+        if(!isNaN(str)){
+            currentNum += str
+        } else if(currentNum){
+            sum += Number(currentNum)
+            currentNum = ''
+        }
+    }
+    
+    if(currentNum){
+        sum += Number(currentNum)
+    }
+    
+    return sum
 }
