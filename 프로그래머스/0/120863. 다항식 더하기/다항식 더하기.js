@@ -6,18 +6,18 @@ function solution(polynomial) {
     
     for(let p of poly){
         if(p.includes("x")){
-            const xValue = p.split("x")[0]
-            xSum += xValue === "" ? 1 : +xValue
+            xSum += p.split("x").join('') === "" ? +1 : +p.split("x").join('')
         } else {
             numSum += +p
         }
     }
     
-    if(xSum > 0){
-        answer += xSum === 1 ? "x" : xSum + "x"
-    }
-    if(numSum > 0){
-        answer += xSum>0 ? " + " + numSum : numSum
+    if(numSum === 0){
+        answer = xSum + "x"
+    } else if(xSum === 0){
+        answer = String(numSum)
+    } else {
+        answer = xSum + "x + " + numSum
     }
     
     return answer
