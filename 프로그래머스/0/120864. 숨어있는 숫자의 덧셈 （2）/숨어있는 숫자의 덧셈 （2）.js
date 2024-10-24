@@ -1,20 +1,16 @@
 function solution(my_string) {
+    let tempNum = '';
+    let sum = 0;
     
-    let sum = 0
-    let currentNum = ''
-    
-    for(let str of my_string){
-        if(!isNaN(str)){
-            currentNum += str
-        } else if(currentNum){
-            sum += Number(currentNum)
-            currentNum = ''
+    for(let s of my_string){
+        if(!isNaN(s)){
+            tempNum += s
+        } else {
+            sum += +tempNum
+            tempNum = ''
         }
     }
-    
-    if(currentNum){
-        sum += Number(currentNum)
-    }
+    if(tempNum !== "") sum += +tempNum
     
     return sum
 }
