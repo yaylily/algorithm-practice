@@ -1,22 +1,11 @@
 function solution(lines) {
-    let everyLines = [];
+    let overLap = new Array(201).fill(0)
     
-    for(let line of lines){
-        for(let i= line[0]; i<line[1]; i++){
-            everyLines.push(i)
+    lines.forEach(([start, end]) => {
+        for(let i=start; i<end; i++){
+            overLap[i+100] ++
         }
-    }
-    let countObj = everyLines.reduce((acc, num) => {
-        acc[num] = (acc[num] || 0) + 1
-        return acc
-    }, {})
+    })
     
-    let matchLines = 0;
-    for(let key in countObj){
-        if(countObj[key] > 1){
-            matchLines ++
-        }
-    }
-    
-    return matchLines
+    return overLap.filter((a) => a > 1).length
 }
