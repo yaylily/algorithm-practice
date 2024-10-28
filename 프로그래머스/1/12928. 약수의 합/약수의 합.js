@@ -1,10 +1,13 @@
 function solution(n) {
     let sum = 0;
     
-    for(let i=1; i<=n; i++){
+    let i
+    for(i=1; i<=Math.sqrt(n); i++){
         if(n%i === 0){
-            sum += i
+            sum += i + n/i
         }
     }
-    return sum
+    i--
+    
+    return n/i === Math.sqrt(n) ? sum - Math.sqrt(n) : sum
 }
