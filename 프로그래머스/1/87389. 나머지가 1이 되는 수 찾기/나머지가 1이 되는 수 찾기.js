@@ -1,11 +1,9 @@
 function solution(n) {
     let i=1
     
-    while(n>=1){
+    while(i++){
         if(n%i === 1){
-            break;
+            return i
         }
-        i++ 
     }
-    return i
 }
