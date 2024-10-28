@@ -1,9 +1,9 @@
-function solution(n)
-{
-    var answer = 0;
-    let str = String(n);
-    let arr = str.split("");
-    answer = arr.reduce((a, b) => a + parseInt(b), 0);
-
-    return answer;
+function solution(n){
+    let sum = 0;
+    let str = String(n)
+   
+    for(let i=0; i<str.length; i++){
+        sum += +str[i]
+    }
+    return sum
 }
