@@ -1,8 +1,11 @@
 function solution(n) {
-
-    for(let x=2; x<n; x++) {
-        if(n%x === 1) {
-            return x
+    let i=1
+    
+    while(n>=1){
+        if(n%i === 1){
+            break;
         }
+        i++ 
     }
+    return i
 }
