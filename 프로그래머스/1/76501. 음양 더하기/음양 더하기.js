@@ -1,14 +1,9 @@
 function solution(absolutes, signs) {
-    var answer = 0;
+    let mix = []
     
-    for (var i = 0; i < absolutes.length; i++) {
-        if (signs[i] === true) {
-            answer = answer + absolutes[i];
-        } else if (signs[i] === false) {
-            answer = answer - absolutes[i];
-        }
-    }    
+    for(let i=0; i<absolutes.length; i++){
+        signs[i] === true ? mix.push(absolutes[i]) : mix.push(-1 * absolutes[i])
+    }
     
-    
-    return answer;
+    return mix.reduce((a, b) => a+b)
 }
