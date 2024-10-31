@@ -1,9 +1,9 @@
 function solution(absolutes, signs) {
-    let mix = []
+    let mix = 0
     
     for(let i=0; i<absolutes.length; i++){
-        signs[i] === true ? mix.push(absolutes[i]) : mix.push(-1 * absolutes[i])
+        signs[i] === true ? mix += absolutes[i] : mix -= absolutes[i]
     }
     
-    return mix.reduce((a, b) => a+b)
+    return mix
 }
