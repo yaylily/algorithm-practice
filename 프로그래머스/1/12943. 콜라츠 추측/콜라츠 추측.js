@@ -1,11 +1,11 @@
 function solution(num) {
-    var answer = 0;
-    for(let i=0; i<500; i++){
-    if (num != 1){
-        num = num%2==0? num/2 : num*3+1
-    } else {
-        return i
+    let count = 0;
+
+    while(count < 500){
+        if(num ===1) break;
+        num = num%2 === 0 ? num/2 : num*3 +1
+        
+        count++
     }
-    }
-    return answer = -1;
+    return count === 500 ? -1 : count
 }
