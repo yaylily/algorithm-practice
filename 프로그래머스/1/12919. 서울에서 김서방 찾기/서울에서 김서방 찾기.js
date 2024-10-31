@@ -1,9 +1,5 @@
 function solution(seoul) {
-    var answer = '';
+    const location = seoul.indexOf("Kim")
     
-    for(let i=0; i<seoul.length; i++){
-       if( seoul[i] === "Kim"){
-          return answer = `김서방은 ${i}에 있다`
-       }
-    }
+    return `김서방은 ${location}에 있다`
 }
