@@ -1,11 +1,11 @@
 function solution(s) {
-    var answer = true;
-    
-    if((s.length === 4) || (s.length === 6)){
-        answer = s.split("").every(c => !isNaN(c))
+    const booleanS = s.split('').map((a) => {
+        return isNaN(a) ? false : true
+    })
+    if((s.length === 4 || s.length === 6) && !booleanS.includes(false)){
+        return true
     } else {
-        answer = false
+        return false
     }
     
-    return answer;
 }
