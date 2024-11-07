@@ -1,20 +1,15 @@
 function solution(sizes) {
-    var answer = 0;
+    // 짧은쪽 배열, 긴 쪽 배열 만들어서 넣기
+    let min = [];
+    let max = []
     
-    let height =0;
-    let width = 0;
-    
-    for(let i=0; i<sizes.length; i++){
-        if(sizes[i][0]>sizes[i][1]){
-            sizes[i].reverse()
-        }
-        if(sizes[i][0] > height){
-            height = sizes[i][0]
-        };
-        if (sizes[i][1]>width){
-            width = sizes[i][1]
-        }
+    for(let s of sizes){
+        min.push(Math.min(...s))
+        max.push(Math.max(...s))
     }
     
-    return answer = height * width;
+    
+    // 해당 배열에서 가장 큰 값들을 곱해서 지갑 크기 구하기
+    return Math.max(...min) * Math.max(...max)
+    
 }
