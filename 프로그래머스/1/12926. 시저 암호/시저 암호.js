@@ -1,6 +1,6 @@
 function solution(s, n) {
-    const smallAlph = ["a", "b", "c", "d" ,"e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-    const bigAlph = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    const smallAlph = "abcdefghijklmnopqrstuvwxyz"
+    const bigAlph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     
    // 하나씩 돌려서 해당 값의 인덱스 구해줌
     const siser = s.split("").map((a) => {
