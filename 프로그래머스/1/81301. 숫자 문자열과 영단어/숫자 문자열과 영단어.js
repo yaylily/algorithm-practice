@@ -1,6 +1,5 @@
 function solution(s) {
     const alph = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-    const num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     
     let answer = ''
     
@@ -10,7 +9,7 @@ function solution(s) {
         isNaN(s[i]) ? temp += s[i] : answer += s[i]
         //temp가 숫자단어를 완성하면 해당 단어 인덱스를 숫자형에서 찾아준다.
         if(alph.includes(temp)){
-            answer += num[alph.indexOf(temp)]
+            answer += alph.indexOf(temp)
             temp = ''
         }
     }
