@@ -1,17 +1,8 @@
 function solution(food) {
-    var answer = '';
+    // 각 인덱스의 값/2 한 후 정수화한 값만큼 반복한 배열 생성
+    const order = food.map((f, index) => index.toString().repeat(f/2))
+    const reverse = [...order].reverse()
     
-    for(let i=1; i<food.length; i++){
-        if(food[i]>=2){
-            answer+= String(i).repeat(parseInt(food[i]/2))
-        }
-    }
-    answer += "0"
-    
-    for(let i= food.length-1; i>0; i--){
-        if(food[i]>=2){
-           answer+= String(i).repeat(parseInt(food[i]/2))
-    }
-    }
-    return answer;
+    //'0'추가해서 합치기
+    return order.join("")+"0"+ reverse.join("")
 }
