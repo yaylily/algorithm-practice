@@ -1,21 +1,16 @@
 function solution(k, score) {
-    const honor = []
-    const result = []
-
-    for(let i=0; i < score.length; i++){
-        if(i < k) {
-            honor.push(score[i])
+    let temp = []
+   
+    // score 값을 하나씩 넣어준다
+    return score.map((s, index) => {
+        // index가 k-1 보다 길이가 작을 때는 제일 작은 값 반환        
+        if(index < k-1){
+            temp.push(s)
+            return Math.min(...temp)
+        } else {
+            // k개 이상이면 내림차순 정렬 후 안덱스 k-1 반환            
+            temp.push(s)
+            return temp.sort((a, b) => b-a)[k-1]
         }
-        
-        if(score[i] > Math.min(...honor)){
-            honor.pop()
-            honor.push(score[i])
-            honor.sort((a, b) => b-a)
-        }
-        
-        result.push(honor[honor.length -1])
-    }
-    
-    return result
-
+    })
 }
