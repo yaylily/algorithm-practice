@@ -1,10 +1,8 @@
 function solution(a, b) {
-    let weeks = ['FRI', 'SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU'];
-    let months = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    let whatWeek = b - 1;
-    for (let i = 1; i < a; i++) {
-        whatWeek += months[i - 1];
-    }
-
-    return weeks[whatWeek % 7];
+    const week = [ "FRI", "SAT", "SUN", "MON", "TUE", "WED", "THU" ]
+    const month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    
+    const days = month.slice(0,a-1).reduce((acc, value) => acc+value, 0) + b
+    
+    return week[(days-1)%7]
 }
