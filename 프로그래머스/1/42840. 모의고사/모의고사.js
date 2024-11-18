@@ -1,22 +1,27 @@
 function solution(answers) {
-  const one = [1, 2, 3, 4, 5];
-  const two = [2, 1, 2, 3, 2, 4, 2, 5];
-  const three = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
-  const result = [0, 0, 0];
-  const length = answers.length;
-  for (let i = 0; i < length; i++) {
-    if (one[i % 5] === answers[i]) result[0]++;
-    if (two[i % 8] === answers[i]) result[1]++;
-    if (three[i % 10] === answers[i]) result[2]++;
-  }
-  const answer = [];
-  const maxValue = Math.max(...result);
-  let index = 0;
-  for (let i = 0; i < 3; i++) {
-    if (maxValue === result[i]) {
-      answer[index] = i + 1;
-      index++;
+  let one = [1,2,3,4,5]
+  let two = [2,1,2,3,2,4,2,5]
+  let three = [3,3,1,1,2,2,4,4,5,5]
+  
+  const person1 = match(one, answers)
+  const person2 = match(two, answers)
+  const person3 = match(three, answers)
+  
+  const max = Math.max(person1, person2, person3)
+  const maxPeople = [person1, person2, person3].map((p, index) => { 
+      return p === max ? index+1 : -1
+  }).filter((a) => a !== -1)
+  
+  return maxPeople
+
+}
+
+function match(marking, answers){
+    let extended = []
+    while(extended.length<answers.length){
+       extended = extended.concat(marking)
     }
-  }
-  return answer;
+    extended = extended.slice(0, answers.length)
+    
+    return extended.filter((m, i) => m === answers[i]).length
 }
