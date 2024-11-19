@@ -1,19 +1,13 @@
 function solution(k, m, score) {
-    if(score.length < m){
-        return 0;
+    //score 내림차순
+    score = score.sort((a, b) => b-a)
+    
+    // m씩 더해가며 해당 박스의 최저 사과 점수 구함
+    let price = []
+    for (let i=m-1; i<score.length; i+=m){
+        price.push(score[i]*m)
     }
     
-    score.sort((a, b) => a - b);
-    
-    let total = 0;
-    
-    while(score.length >= m){
-        const box = score.splice(score.length - m, m);
-        
-        const prize = m * Math.min(...box);
-        
-        total += prize;
-    }
-    
-    return total;
+    //박스 점수 모두 더해서 반환
+    return price.reduce((a,b)=> a+b, 0)
 }
