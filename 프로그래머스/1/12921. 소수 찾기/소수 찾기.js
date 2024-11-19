@@ -1,5 +1,5 @@
 function solution(n) {
-    let count = []
+    let count = 0
     // 약수의 개수를 배열에 넣어준다
     for(let i=2; i<=n; i++){
         let temp=0
