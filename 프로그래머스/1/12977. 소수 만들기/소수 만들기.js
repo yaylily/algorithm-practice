@@ -1,21 +1,23 @@
 function solution(nums) {
-    let answer = 0;
+    let count = 0;
     
-    for (let i = 0; i<nums.length-2; i++) {
-        for (let j = i+1; j<nums.length-1; j++) {
-            for (let k = j+1; k<nums.length; k++) {
-                let sum = nums[i] + nums[j] + nums[k]
-                answer++;
+    //숫자 3개 더하기    
+    for(let i=0; i<nums.length-2; i++){
+        for(let j=i+1; j<nums.length-1;j++){
+            for(let k=j+1; k<nums.length;k++){
+                const sum = nums[i] + nums[j] + nums[k]
                 
-                for (let n = 2; n<=Math.sqrt(sum); n++) {
-                    if (sum % n === 0) {
-                        answer--;
-                        break;
+                // 소수인지 확인
+                let temp = 0
+                for(let l=1; l<=Math.sqrt(sum); l++){
+                    if(sum%l === 0){
+                        temp ++
+                        if(l !== sum/l) temp ++
                     }
                 }
+                if(temp === 2) count ++ 
             }
         }
     }
-    
-    return answer;
+    return count
 }
