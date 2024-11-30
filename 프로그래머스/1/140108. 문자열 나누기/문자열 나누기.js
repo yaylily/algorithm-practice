@@ -1,28 +1,21 @@
 function solution(s) {
-    let answer = 0;
-    let i = 0;
+    let answer = []
     
-    while (i < s.length) {
-        let x = s[i];
-        let countX = 0;
-        let countY = 0;
-
-        while (i < s.length) {
-            if (s[i] === x) {
-                countX++;
-            } else {
-                countY++;
-            }
+    let firstLetter = s[0];
+    let firstIndex = 0;
+    let firstCount = 0; 
+    let remainingCount = 0;    
+     for(let i=0; i<s.length; i++){
+        s[i] === firstLetter ? firstCount++ : remainingCount++;
+         
+        if(firstCount === remainingCount){
+            answer.push(s.slice(firstIndex, i+1))
             
-            i++;
-            
-            if (countX === countY) {
-                break;
-            }
+            firstIndex = i+1
+            firstCount = 0;
+            remainingCount = 0;
+            firstLetter = s[firstIndex]
         }
-        
-        answer++;
     }
-    
-    return answer;
+    return firstCount === remainingCount ? answer.length : answer.length +1
 }
