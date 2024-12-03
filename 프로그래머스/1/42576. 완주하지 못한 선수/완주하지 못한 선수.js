@@ -1,12 +1,13 @@
 function solution(participant, completion) {
-    const sortedParticipant = participant.sort()
-    const sortedCompletion = completion.sort()
+    let completionObj = completion.reduce((obj, p) => (obj[p] = obj[p]? obj[p]+1 : 1,obj),{})
     
-    for(let i=0; i<participant.length; i++){
-        if(sortedParticipant[i] !== sortedCompletion[i]){
-            return sortedParticipant[i]
+    return participant.find((p) => {
+        if(completionObj[p]){
+            completionObj[p] = completionObj[p]-1
+        } else {
+            return true
         }
-    }
+    })
 }
 
 
