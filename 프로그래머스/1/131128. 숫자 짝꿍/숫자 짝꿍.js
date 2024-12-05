@@ -1,15 +1,23 @@
 function solution(X, Y) {
     let answer = ''
-    X = X.split("")
-    Y = Y.split("")
-
-    for(let i = 0 ; i < 10 ; i ++) {
-        const curX = X.filter(a => Number(a) === i).length
-        const curY = Y.filter(a => Number(a) === i).length
-        answer+=String(i).repeat(Math.min(curX, curY))
+    let obj = {}
+    
+    for(let i=0; i<X.length; i++){
+        obj[X[i]] = obj[X[i]] ? obj[X[i]] += 1 : 1
     }
-    if(answer === '') return "-1"
-    if(Number(answer) === 0) return "0"
+    
+    const commonKeys = Object.keys(obj).filter((o) => Y.includes(o))
 
-    return answer.split("").sort((a,b) => Number(b)-Number(a)).join("")
+    if(commonKeys.length === 0) return '-1'
+    if([...new Set(commonKeys)].join('') === '0') return '0'
+    
+    let yArr = Y.split("").sort((a, b) => b-a)
+
+    yArr.forEach((y) => {
+            if(obj[y] > 0){
+                answer += y
+                obj[y] -= 1
+            }
+    })
+    return answer
 }
