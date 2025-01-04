@@ -1,35 +1,57 @@
 function solution(park, routes) {
-  const N = park.length;
-  const M = park[0].length;
-
-
-  let start;
-  for (let i = 0; i < N; i++) {
-    for (let j = 0; j < M; j++) {
-      if (park[i][j] == "S") start = [i, j];
+    let currentPosition = [];
+    let MaxW = park[0].length;
+    let MaxH = park.length;
+    
+    //currentPosition 값을 담는다.
+    for(let i=0; i<park.length; i++){
+        park[i] = park[i].split("")
+        for(let j=0; j<park[i].length;j++){
+            if(park[i][j] === "S"){
+                currentPosition = [i, j]
+            }
+        }
     }
-  }
 
-  const directions = {
-    E: [0, 1],
-    W: [0, -1],
-    S: [1, 0],
-    N: [-1, 0],
-  };
-  for (const route of routes) {
-    const [dir, distanceStr] = route.split(" ");
-    let distance = parseInt(distanceStr);
-    let [nx, ny] = start;
-
-    let step = 0;
-    while (step < distance) {
-      nx += directions[dir][0];
-      ny += directions[dir][1];
-      if (nx < 0 || N <= nx || ny < 0 || M <= ny || park[nx][ny] === "X") break;
-      step++;
+    //routes를 돌려 위치 이동
+    for(let route of routes){
+        const [dir, steps] = route.split(" ")
+        let tempH = currentPosition[0];
+        let tempW = currentPosition[1];
+        const moveSteps = +steps
+        
+        if(dir === "E") tempW += moveSteps
+        if(dir === "W") tempW -= moveSteps
+        if(dir === "S") tempH += moveSteps
+        if(dir === "N") tempH -= moveSteps
+        
+        // 이동 가능 범위 확인
+        if(tempW >=0 && tempW < MaxW && tempH >= 0 && tempH <MaxH){
+             //장애물 확인
+            let isBlocked = false
+        if(dir === "E" || dir === "W"){
+            const start = Math.min(currentPosition[1], tempW)
+            const end = Math.max(currentPosition[1], tempW)
+            for(let i= start; i<= end; i++){
+                if(park[currentPosition[0]][i] === "X"){
+                    isBlocked = true
+                    break;
+                }
+            }
+        } else {
+            const start = Math.min(currentPosition[0], tempH)
+            const end = Math.max(currentPosition[0], tempH)
+            for(let i=start; i<= end; i++){
+                if(park[i][currentPosition[1]] === "X"){
+                    isBlocked = true
+                    break;
+                }
+            }
+        }
+        if(!isBlocked){
+        currentPosition = [tempH, tempW]    
+        }
+     } 
     }
-    if (step === distance) start = [nx, ny];
-  }
-
-  return start;
+    return currentPosition
 }
