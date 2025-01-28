@@ -1,28 +1,28 @@
 function solution(id_list, report, k) {
-    const answer = new Array(id_list.length).fill(0);
-    const report_list = {}
     
+    // 중복 report 없애기
+    const uniqueReport = new Set(report)
     
-    id_list.forEach((user)=>{
-    	report_list[user]=[];
+    // 신고된 횟수 객체
+    let reportCounts = {}
+    // 신고자별 신고한 유저
+    let userReports = {}
+    
+    // 초기화
+    id_list.forEach(id => {
+        reportCounts[id] = 0
+        userReports[id] = []
     })
     
-    const uniqueReports = [...new Set(report)]
-    
-    uniqueReports.forEach((entry)=>{
-    	const [user_id,report_id] = entry.split(" ");
-		if(!report_list[report_id].includes(user_id)){
-        	report_list[report_id].push(user_id);
-        }
+    // 신고 처리
+    uniqueReport.forEach((a) => {
+        const [reporter, reported] = a.split(" ")
+        reportCounts[reported] += 1
+        userReports[reporter].push(reported)
     })
     
-    for(const key in report_list){
-    	if(report_list[key].length >= k){
-        	report_list[key].forEach((user)=>{
-            	answer[id_list.indexOf(user)]+=1
-            })
-        }
-    }
-    
-    return answer;
+    // 메일 발송 횟수
+    return id_list.map(id => {
+        return userReports[id].filter((reportedUser) => reportCounts[reportedUser] >= k).length
+    })
 }
